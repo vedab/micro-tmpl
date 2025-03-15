@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+    <script  type="application/javascript" src="./micro-tmpl.js"></script>
+<!-- You would use it against templates written like this (it doesn’t have to be in this particular manner – but it’s a style that I enjoy): -->
+<script type="text/html" id="item_tmpl">
+  <div id="<%=id%>" class="<%=(i % 2 == 1 ? " even" : "")%>">
+    <div class="grid_1 alpha right">
+      <img class="righted" src="<%=image_url%>"/>
+    </div>
+    <div class="grid_6 omega contents">
+      <p><b><a href="/<%=from_user%>"><%=from_user%></a>:</b> <%=text%></p>
+    </div>
+  </div>
+</script>
+
+<!-- You can also inline script: -->
+
+<script type="text/html" id="user_tmpl">
+  <% for ( var i = 0; i < users.length; i++ ) { %>
+    <li><a href="<%=users&#91;i&#93;.url%>"><%=users&#91;i&#93;.name%></a></li>
+  <% } %>
+</script>
+
+<script type="text/javascript">
+  function initTmpl () {
+    document.querySelector("#tmpl1").innerHTML = tmpl("item_tmpl", {"id":1, "image_url": "https://avatars.githubusercontent.com/u/633357?v=4", "from_user":"vedab", "text":"Hello!"}
+  }
+</script>
+</head>
+
+  <body onload="initTmpl()">
+    <div id="tmpl1"> Template 1 </div>
+    <div id="tmpl2"> Template 2 </div>
+  </body>
+</html>
